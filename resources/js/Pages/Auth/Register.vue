@@ -7,8 +7,11 @@ import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
-    name: '',
-    email: '',
+    first_name:'',
+    last_name:'',
+    phone:'',
+    email:'',
+    national_id:'',
     password: '',
     password_confirmation: '',
 });
@@ -21,30 +24,45 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Register" />
+    <GuestLayout dir="rtl">
+        <Head title="ثبت نام" />
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="first_name" value="نام" />
 
                 <TextInput
-                    id="name"
+                    id="first_name"
                     type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.name"
+                    class="mt-1 block w-full "
+                    v-model="form.first_name"
                     required
                     autofocus
-                    autocomplete="name"
+                    autocomplete="first_name"
                 />
 
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError class="mt-2" :message="form.errors.first_name" />
+            </div>
+            <div>
+                <InputLabel for="last_name" value="نام خانوادگی" />
+
+                <TextInput
+                    id="last_name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.last_name"
+                    required
+                    autocomplete="last_name"
+                />
+
+                <InputError class="mt-2" :message="form.errors.last_name" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="ایمیل" />
 
                 <TextInput
+                    dir="ltr"
                     id="email"
                     type="email"
                     class="mt-1 block w-full"
@@ -57,7 +75,39 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="phone" value="شماره همراه" />
+
+                <TextInput
+                    dir="ltr"
+                    id="phone"
+                    type="tel"
+                    class="mt-1 block w-full"
+                    v-model="form.phone"
+                    required
+                    autocomplete="phone"
+                />
+
+                <InputError class="mt-2" :message="form.errors.phone" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="national_id" value="کدملی" />
+
+                <TextInput
+                    dir="ltr"
+                    id="national_id"
+                    type="number"
+                    class="mt-1 block w-full"
+                    v-model="form.national_id"
+                    required
+                    autocomplete="national_id"
+                />
+
+                <InputError class="mt-2" :message="form.errors.national_id" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="password" value="رمز عبور" />
 
                 <TextInput
                     id="password"
@@ -74,7 +124,7 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel
                     for="password_confirmation"
-                    value="Confirm Password"
+                    value="تکرار رمز عبور"
                 />
 
                 <TextInput
